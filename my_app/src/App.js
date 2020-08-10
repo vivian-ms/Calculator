@@ -1,9 +1,10 @@
 import React from 'react';
+import Buttons from './components/Buttons';
 
 const App = () => {
   return (
-    <div>
-      
+    <div className="container">
+      <Buttons />
     </div>
   );
 };
