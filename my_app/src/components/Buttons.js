@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Buttons = ({ input, updateInput }) => {
   const handleClick = evt => {
@@ -6,6 +6,67 @@ const Buttons = ({ input, updateInput }) => {
       updateInput(evt.target.value);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener('keydown', evt => {
+      switch (evt.key) {
+        case '0':
+          document.querySelector('#zero').click();
+          break;
+        case '1':
+          document.querySelector('#one').click();
+          break;
+        case '2':
+          document.querySelector('#two').click();
+          break;
+        case '3':
+          document.querySelector('#three').click();
+          break;
+        case '4':
+          document.querySelector('#four').click();
+          break;
+        case '5':
+          document.querySelector('#five').click();
+          break;
+        case '6':
+          document.querySelector('#six').click();
+          break;
+        case '7':
+          document.querySelector('#seven').click();
+          break;
+        case '8':
+          document.querySelector('#eight').click();
+          break;
+        case '9':
+          document.querySelector('#nine').click();
+          break;
+        case '.':
+          document.querySelector('#decimal').click();
+          break;
+        case '+':
+          document.querySelector('#add').click();
+          break;
+        case '-':
+          document.querySelector('#subtract').click();
+          break;
+        case '*':
+          document.querySelector('#multiply').click();
+          break;
+        case '/':
+          evt.preventDefault();
+          document.querySelector('#divide').click();
+          break;
+        case 'Enter':
+          document.querySelector('#equals').click();
+          break;
+        case 'Backspace':
+          document.querySelector('#clear').click();
+          break;
+        default:
+          break;
+      }
+    });
+  }, []);  // End useEffect
 
   return (
     <div id="calculator">
