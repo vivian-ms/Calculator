@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Buttons = ({ input, updateInput, setFormula, updateFormula }) => {
+const Buttons = ({ input, updateInput, setInput, updateFormula, setFormula, answer, updateAnswer, setAnswer }) => {
   const handleClick = evt => {
       // Number pressed; prevent zero as first digit
     if (evt.target.classList.contains('number') && ((evt.target.id === 'zero' && input) || evt.target.id !== 'zero')) {
@@ -17,6 +17,16 @@ const Buttons = ({ input, updateInput, setFormula, updateFormula }) => {
       // Operator pressed
     } else if (evt.target.classList.contains('operator')) {
       updateFormula(evt.target.value);
+
+      // Clear button pressed
+    } else if (evt.target.id === 'clear') {
+      setInput('');
+      setFormula('');
+      setAnswer('');
+
+      // Equal button pressed
+    } else if (evt.target.id === 'equals') {
+      updateAnswer();
     }
   };
 
