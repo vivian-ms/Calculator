@@ -6,6 +6,7 @@ import Formula from './components/Formula';
 const App = () => {
   const [input, setInput] = useState('');
   const [formula, setFormula] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const updateInput = n => {
     setInput(input + n);
@@ -46,13 +47,28 @@ const App = () => {
     }
   };
 
+  const updateAnswer = () => {
+    // If there's input, add input to formula and solve
+    if (input) {
+      setAnswer(eval(`${formula} ${input}`));
+    }
+
+    // If formula ends with an operator and no input, remove the operator and solve the formula
+    if (formula && !input) {
+      setAnswer(eval(`${formula.substring(0, formula.length - 1).trim()}`));
+    }
+
+    setInput('');
+    setFormula('');
+  };
+
   return (
     <div className="container">
       <div id="display">
         <Formula formula={formula} />
         <Input input={input} formula={formula} />
       </div>
-      <Buttons input={input} updateInput={updateInput} formula={formula} updateFormula={updateFormula} />
+      <Buttons input={input} updateInput={updateInput} setInput={setInput} updateFormula={updateFormula} setFormula={setFormula} answer={answer} updateAnswer={updateAnswer} setAnswer={setAnswer} />
     </div>
   );
 };
