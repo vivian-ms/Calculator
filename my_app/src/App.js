@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Buttons from './components/Buttons';
 import Input from './components/Input';
 import Formula from './components/Formula';
+import Answer from './components/Answer';
 
 const App = () => {
   const [input, setInput] = useState('');
@@ -65,8 +66,9 @@ const App = () => {
   return (
     <div className="container">
       <div id="display">
-        <Formula formula={formula} />
-        <Input input={input} formula={formula} />
+        { !answer && <Formula formula={formula} /> }
+        { !answer && <Input input={input} formula={formula} answer={answer} /> }
+        <Answer answer={answer} />
       </div>
       <Buttons input={input} updateInput={updateInput} setInput={setInput} updateFormula={updateFormula} setFormula={setFormula} answer={answer} updateAnswer={updateAnswer} setAnswer={setAnswer} />
     </div>
