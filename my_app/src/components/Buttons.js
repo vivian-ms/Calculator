@@ -6,6 +6,14 @@ const Buttons = ({ input, updateInput, setFormula, updateFormula }) => {
     if (evt.target.classList.contains('number') && ((evt.target.id === 'zero' && input) || evt.target.id !== 'zero')) {
       updateInput(evt.target.value);
 
+      // Decimal pressed
+    } else if (evt.target.id === 'decimal') {
+      if (!input) {
+        updateInput(`0${evt.target.value}`);
+      } else if (!/\./.test(input)) {
+        updateInput(evt.target.value);
+      }
+
       // Operator pressed
     } else if (evt.target.classList.contains('operator')) {
       updateFormula(evt.target.value);
