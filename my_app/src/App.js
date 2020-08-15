@@ -19,8 +19,13 @@ const App = () => {
     /* ################################################## */
 
       // If operator is pressed before any number is pressed, formula starts with 0
-    if (!input && !formula) {
+    if (!input && !formula && !answer) {
       setFormula(`0 ${f}`);
+
+      // If a previous calculation was perfomed, add operator to the result 
+    } else if (!formula && answer) {
+      setFormula(`${answer} ${f}`);
+      setAnswer('');
 
       // Else add input number and operator to formula
     } else if (input) {
