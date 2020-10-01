@@ -81,18 +81,20 @@ const App = () => {
         }
         break;
 
-        // No default
+        // No default case
     }
-  };
+  };  // End switch
 
   return (
     <div className="container">
+      <h1>JavaScript Calculator</h1>
       <div id="display">
         { !answer && <Formula formula={formula} /> }
         { !answer && <Input input={input} formula={formula} answer={answer} /> }
         <Answer answer={answer} />
-      </div>
+      </div>  {/* End #display */}
       <Buttons input={input} answer={answer} calc={calc} />
+      <footer>Created by Vivian S for <a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-javascript-calculator" target="_blank">freeCodeCamp</a></footer>
     </div>
   );
 };
