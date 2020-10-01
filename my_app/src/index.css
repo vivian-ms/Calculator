@@ -1,22 +1,57 @@
-.container {
-  width: 250px;
+body {
+  background: url('https://cdn.wallpapersafari.com/48/71/DJbO57.jpg');
+  background-size: cover;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  color: #dcc2ee;
+  text-shadow: 5px 5px 10px black;
+}
+
+#calculator {
+  width: 300px;
+  background: #dcc2ee;
+  box-shadow: 5px 5px 8px grey;
 }
 
 #display {
   height: 80px;
-  padding: 5px;
-  font-family: 'Courier';
+  padding: 8px;
+  font-family: 'Orbitron', sans-serif;
   text-align: right;
+  background: lightgrey;
+  box-shadow: 5px 5px 10px grey,
+              1px 1px 10px silver inset,
+              -1px -1px 10px silver inset;
 }
 
 #input, #answer {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
-#calculator {
-  height: 300px;
+.down {
+  bottom: -25px;
+}
+
+.btn {
+  box-shadow: 5px 5px 10px grey;
+}
+
+.btn:hover, .btn:active {
+  box-shadow: none;
+}
+
+footer {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+}
+
+#buttons {
+  height: 350px;
   display: grid;
-  gap: 0px;
+  gap: 5px;
   grid-template-columns: repeat(4, 1fr);
   grid-template: "clear divide multiply subtract"
                  "seven eight nine add"
