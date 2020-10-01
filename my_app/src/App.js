@@ -86,14 +86,16 @@ const App = () => {
   };  // End switch
 
   return (
-    <div className="container">
-      <h1>JavaScript Calculator</h1>
-      <div id="display">
-        { !answer && <Formula formula={formula} /> }
-        { !answer && <Input input={input} formula={formula} answer={answer} /> }
-        <Answer answer={answer} />
-      </div>  {/* End #display */}
-      <Buttons input={input} answer={answer} calc={calc} />
+    <div className="container-fluid d-flex flex-column justify-content-between p-2 vh-100">
+      <h1 className="text-center p-3">JavaScript Calculator</h1>
+      <div id="calculator" className="mx-auto p-2 rounded">
+        <div id="display" className="rounded position-relative">
+          { !answer && <Formula formula={formula} /> }
+          { !answer && <Input input={input} formula={formula} answer={answer} /> }
+          <Answer answer={answer} />
+        </div>  {/* End #display */}
+        <Buttons input={input} answer={answer} calc={calc} />
+      </div>  {/* End #calculator */}
       <footer>Created by Vivian S for <a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-javascript-calculator" target="_blank">freeCodeCamp</a></footer>
     </div>
   );
