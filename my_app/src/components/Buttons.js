@@ -35,63 +35,78 @@ const Buttons = ({ input, answer, calc }) => {
 
   useEffect(() => {
     window.addEventListener('keydown', evt => {
+      let key;
+
       switch (evt.key) {
         case '0':
-          document.querySelector('#zero').click();
+          key = document.querySelector('#zero');
           break;
         case '1':
-          document.querySelector('#one').click();
+          key = document.querySelector('#one');
           break;
         case '2':
-          document.querySelector('#two').click();
+          key = document.querySelector('#two');
           break;
         case '3':
-          document.querySelector('#three').click();
+          key = document.querySelector('#three');
           break;
         case '4':
-          document.querySelector('#four').click();
+          key = document.querySelector('#four');
           break;
         case '5':
-          document.querySelector('#five').click();
+          key = document.querySelector('#five');
           break;
         case '6':
-          document.querySelector('#six').click();
+          key = document.querySelector('#six');
           break;
         case '7':
-          document.querySelector('#seven').click();
+          key = document.querySelector('#seven');
           break;
         case '8':
-          document.querySelector('#eight').click();
+          key = document.querySelector('#eight');
           break;
         case '9':
-          document.querySelector('#nine').click();
+          key = document.querySelector('#nine');
           break;
         case '.':
-          document.querySelector('#decimal').click();
+          key = document.querySelector('#decimal');
           break;
         case '+':
-          document.querySelector('#add').click();
+          key = document.querySelector('#add');
           break;
         case '-':
-          document.querySelector('#subtract').click();
+          key = document.querySelector('#subtract');
           break;
         case '*':
-          document.querySelector('#multiply').click();
+          key = document.querySelector('#multiply');
           break;
         case '/':
           evt.preventDefault();
-          document.querySelector('#divide').click();
+          key = document.querySelector('#divide');
           break;
         case 'Enter':
-          document.querySelector('#equals').click();
+          key = document.querySelector('#equals');
           break;
         case 'Backspace':
-          document.querySelector('#clear').click();
+          key = document.querySelector('#clear');
           break;
         default:
           break;
-      }
-    });
+      }  // End switch
+
+      if (key) {
+        key.click();
+
+            // Add and remove .active to pressed button
+        key.classList.add('active');
+        key.setAttribute('style', 'box-shadow: none');
+
+        setTimeout(() => {
+          key.classList.remove('active');
+          key.removeAttribute('style');
+        }, 200);
+      }  // End if
+    });  // End keydown event
   }, []);  // End useEffect
 
   return (
