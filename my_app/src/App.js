@@ -12,6 +12,10 @@ const App = () => {
   const calc = (action, x = '') => {
     switch (action) {
       case 'ADD_INPUT': {
+            // Clear previous calculation
+        if (answer) {
+          setAnswer('');
+        }
         setInput(x);
         break;
       }
@@ -20,6 +24,10 @@ const App = () => {
         if (x === 'clear') {
           setInput('');
         } else {
+              // Clear previous calculation
+          if (answer) {
+            setAnswer('');
+          }
           setInput(input + x);
         }
         break;
@@ -76,7 +84,7 @@ const App = () => {
             setAnswer(eval(`${formula} ${input}`));
           }
 
-              // If there's a formula but no input, remove the operator and solve the formula
+              // If there's a formula and no input, remove the operator and solve the formula
           if (formula && !input) {
             setAnswer(eval(`${formula.substring(0, formula.length - 1).trim()}`));
           }
