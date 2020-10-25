@@ -9,19 +9,24 @@ const App = () => {
   const [formula, setFormula] = useState('');
   const [answer, setAnswer] = useState('');
 
-  const calc = (action, x = "") => {
+  const calc = (action, x = '') => {
     switch (action) {
-      case "UPDATE_INPUT":
-        if (x === "clear") {
-          setInput("");
+      case 'ADD_INPUT': {
+        setInput(x);
+        break;
+      }
+
+      case 'UPDATE_INPUT':
+        if (x === 'clear') {
+          setInput('');
         } else {
           setInput(input + x);
         }
         break;
 
-      case "UPDATE_FORMULA":
-        if (x === "clear") {
-          setFormula("");
+      case 'UPDATE_FORMULA':
+        if (x === 'clear') {
+          setFormula('');
         } else {
           /* ################################################## */
           /* #### If formula is empty or ends with a number and an operator is pressed #### */
@@ -34,12 +39,12 @@ const App = () => {
               // If a previous calculation was perfomed, add operator to the result
           } else if (!formula && answer) {
             setFormula(`${answer} ${x}`);
-            setAnswer("");
+            setAnswer('');
 
               // Else add input number and operator to formula
           } else if (input) {
             setFormula(`${formula} ${input} ${x}`);
-            setInput("");
+            setInput('');
           }
 
           /* ################################################## */
@@ -47,7 +52,7 @@ const App = () => {
           /* ################################################## */
           if (!input && /[+*/-]/.test(formula[formula.length - 1])) {
                   // If new operator is -, append - after existing operator
-            if (x === "-" && /\d/.test(formula[formula.length - 3])) {
+            if (x === '-' && /\d/.test(formula[formula.length - 3])) {
               setFormula(`${formula} ${x}`);
 
                   // If formula ends with - and new operator isn't -, replace existing operator
@@ -62,9 +67,9 @@ const App = () => {
         }
         break;
 
-      case "UPDATE_ANSWER":
-        if (x === "clear") {
-          setAnswer("");
+      case 'UPDATE_ANSWER':
+        if (x === 'clear') {
+          setAnswer('');
         } else {
               // If there's input, add input to formula and solve
           if (input) {
@@ -76,8 +81,8 @@ const App = () => {
             setAnswer(eval(`${formula.substring(0, formula.length - 1).trim()}`));
           }
 
-          setInput("");
-          setFormula("");
+          setInput('');
+          setFormula('');
         }
         break;
 
