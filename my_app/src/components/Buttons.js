@@ -2,34 +2,39 @@ import React, { useEffect } from 'react';
 
 const Buttons = ({ input, answer, calc }) => {
   const handleClick = evt => {
-      // Number pressed; prevent zero as first digit
-    if (evt.target.classList.contains('number') && ((evt.target.id === 'zero' && input) || evt.target.id !== 'zero')) {
-      calc("UPDATE_INPUT", evt.target.value);
+      // Number pressed
+    if (evt.target.classList.contains('number')) {
+        // Replace zero if it's the first digit
+      if (input === '0') {
+        calc('ADD_INPUT', evt.target.value);
+      } else {
+      calc('UPDATE_INPUT', evt.target.value);
+      }
 
       // Decimal pressed
     } else if (evt.target.id === 'decimal') {
         // If no input, add zero in front of decimal
       if (!input) {
-        calc("UPDATE_INPUT", `0${evt.target.value}`);
+        calc('UPDATE_INPUT', `0${evt.target.value}`);
 
         // Only allow one decimal
       } else if (!/\./.test(input)) {
-        calc("UPDATE_INPUT", evt.target.value);
+        calc('UPDATE_INPUT', evt.target.value);
       }
 
       // Operator pressed
     } else if (evt.target.classList.contains('operator')) {
-      calc("UPDATE_FORMULA", evt.target.value);
+      calc('UPDATE_FORMULA', evt.target.value);
 
       // Clear button pressed
     } else if (evt.target.id === 'clear') {
-      calc("UPDATE_INPUT", "clear");
-      calc("UPDATE_FORMULA", "clear");
-      calc("UPDATE_ANSWER", "clear");
+      calc('UPDATE_INPUT', 'clear');
+      calc('UPDATE_FORMULA', 'clear');
+      calc('UPDATE_ANSWER', 'clear');
 
       // Equal button pressed
     } else if (evt.target.id === 'equals') {
-      calc("UPDATE_ANSWER");
+      calc('UPDATE_ANSWER');
     }
   };
 
