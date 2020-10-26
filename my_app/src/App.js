@@ -63,13 +63,18 @@ const App = () => {
             if (x === '-' && /\d/.test(formula[formula.length - 3])) {
               setFormula(`${formula} ${x}`);
 
-                  // If formula ends with - and new operator isn't -, replace existing operator
-            } else if (/-/.test(formula[formula.length - 1]) && /[+*/]/.test(x)) {
-              setFormula(`${formula.substring(0, formula.length - 3).trim()} ${x}`);
+                  // If formula ends with - and new operator isn't -, replace existing operator(s)
+            } else if (/-/.test(formula[formula.length - 1]) && /[+*/-]/.test(x)) {
+              let new_formula = formula;
 
-                  // If new operator isn't -, replace existing operator
+              while(/[+*/-]/.test(new_formula[new_formula.length - 1])) {
+                new_formula = new_formula.slice(0, -1).trim();
+              }
+              setFormula(`${new_formula} ${x}`);
+
+                  // If formula doesn't end with - and new operator isn't -, replace existing operator
             } else {
-              setFormula(`${formula.substring(0, formula.length - 1).trim()} ${x}`);
+              setFormula(`${formula.slice(0, -1).trim()} ${x}`);
             }
           }
         }
@@ -86,7 +91,11 @@ const App = () => {
 
               // If there's a formula and no input, remove the operator and solve the formula
           if (formula && !input) {
-            setAnswer(eval(`${formula.substring(0, formula.length - 1).trim()}`));
+            let new_formula = formula;
+            while(/[+*/-]/.test(new_formula[new_formula.length - 1])) {
+              new_formula = new_formula.slice(0, -1).trim();
+            }
+            setAnswer(eval(new_formula));
           }
 
           setInput('');
