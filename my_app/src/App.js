@@ -28,7 +28,11 @@ const App = () => {
           if (answer) {
             setAnswer('');
           }
-          setInput(input + x);
+
+              // Limit input to 10 digits
+          if (input.length < 10) {
+            setInput(input + x);
+          }
         }
         break;
 
