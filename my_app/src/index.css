@@ -31,6 +31,32 @@ h1 {
   font-size: 2rem;
 }
 
+#formula-container {
+  height: 1.5rem;
+}
+
+#formula {
+  overflow: hidden;
+}
+
+#formula p {
+  min-width: max-content;
+}
+
+i {
+  cursor: pointer;
+}
+
+.fa-angle-left {
+  margin-left: -273px;
+  margin-top: 4px;
+}
+
+.fa-angle-right {
+  margin-left: -10px;
+  margin-top: 4px;
+}
+
 .down {
   bottom: -25px;
 }
