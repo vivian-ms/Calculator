@@ -11,14 +11,13 @@ const App = () => {
 
   const calc = (action, x = '') => {
     switch (action) {
-      case 'ADD_INPUT': {
+      case 'ADD_INPUT':
             // Clear previous calculation
         if (answer) {
           setAnswer('');
         }
         setInput(x);
-        break;
-      }
+        break;  // End ADD_INPUT
 
       case 'UPDATE_INPUT':
         if (x === 'clear') {
@@ -34,7 +33,7 @@ const App = () => {
             setInput(input + x);
           }
         }
-        break;
+        break;  // End UPDATE_INPUT
 
       case 'UPDATE_FORMULA':
         if (x === 'clear') {
@@ -82,7 +81,7 @@ const App = () => {
             }
           }
         }
-        break;
+        break;  // End UPDATE_FORMULA
 
       case 'UPDATE_ANSWER':
         if (x === 'clear') {
@@ -93,7 +92,7 @@ const App = () => {
             setAnswer(eval(`${formula} ${input}`));
           }
 
-              // If there's a formula and no input, remove the operator and solve the formula
+              // If there's a formula and no input, remove the ending operator(s) and solve the formula
           if (formula && !input) {
             let new_formula = formula;
             while(/[+*/-]/.test(new_formula[new_formula.length - 1])) {
@@ -105,11 +104,10 @@ const App = () => {
           setInput('');
           setFormula('');
         }
-        break;
-
+        break;  // End UPDATE_ANSWER
         // No default case
-    }
-  };  // End switch
+    }  // End switch
+  };  // End calc()
 
   return (
     <div className="container-fluid d-flex flex-column justify-content-between p-2 vh-100">
@@ -122,7 +120,7 @@ const App = () => {
         </div>  {/* End #display */}
         <Buttons input={input} answer={answer} calc={calc} />
       </div>  {/* End #calculator */}
-      <footer>Created by Vivian S for <a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-javascript-calculator" target="_blank">freeCodeCamp</a></footer>
+      <footer>Created by Vivian S for <a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-javascript-calculator" target="_blank" rel="noopener noreferrer">freeCodeCamp</a></footer>
     </div>
   );
 };
