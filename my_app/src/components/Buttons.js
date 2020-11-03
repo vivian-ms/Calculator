@@ -2,16 +2,18 @@ import React, { useEffect } from 'react';
 
 const Buttons = ({ input, answer, calc }) => {
   const handleClick = evt => {
-      // Number pressed
+    /* ########## Number pressed ########## */
     if (evt.target.classList.contains('number')) {
-        // Replace zero if it's the first digit
+        // If input equals 0, replace it with the digit
       if (input === '0') {
         calc('ADD_INPUT', evt.target.value);
+
+        // Else append digit to input
       } else {
-      calc('UPDATE_INPUT', evt.target.value);
+        calc('UPDATE_INPUT', evt.target.value);
       }
 
-      // Decimal pressed
+    /* ########## Decimal pressed ########## */
     } else if (evt.target.id === 'decimal') {
         // If no input, add zero in front of decimal
       if (!input) {
@@ -22,21 +24,21 @@ const Buttons = ({ input, answer, calc }) => {
         calc('UPDATE_INPUT', evt.target.value);
       }
 
-      // Operator pressed
+    /* ########## Operator pressed ########## */
     } else if (evt.target.classList.contains('operator')) {
       calc('UPDATE_FORMULA', evt.target.value);
 
-      // Clear button pressed
+    /* ########## Clear button pressed ########## */
     } else if (evt.target.id === 'clear') {
       calc('UPDATE_INPUT', 'clear');
       calc('UPDATE_FORMULA', 'clear');
       calc('UPDATE_ANSWER', 'clear');
 
-      // Equal button pressed
+    /* ########## Equal button pressed ########## */
     } else if (evt.target.id === 'equals') {
       calc('UPDATE_ANSWER');
     }
-  };
+  };  // End handleClick()
 
   useEffect(() => {
     window.addEventListener('keydown', evt => {
@@ -93,10 +95,10 @@ const Buttons = ({ input, answer, calc }) => {
           key = document.querySelector('#equals');
           break;
         case 'Backspace':
+          evt.preventDefault();
           key = document.querySelector('#clear');
           break;
-        default:
-          break;
+            // No default case
       }  // End switch
 
       if (key) {
