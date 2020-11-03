@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Formula = ({ formula }) => {
+  useEffect(() => {
+      // On update, if formula > 25 digits, scroll to end of formula
+    if (formula.length > 25) {
+      document.querySelector('#formula').scrollLeft = 1000;
+    }
+  }, [formula]);
+
   const scrollLeft = () => {
     document.querySelector('#formula').scrollLeft -= 30;
   }
